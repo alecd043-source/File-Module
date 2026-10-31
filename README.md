@@ -2,7 +2,7 @@
 
 HeimDrive ist eine kleine, schnelle Web-App für Dateien im eigenen Netzwerk. Auf dem Linux-Server läuft ein einzelnes Go-Programm; Handy, Tablet und PC öffnen die Oberfläche einfach im Browser. Dateien lassen sich hochladen, herunterladen, ansehen, umbenennen, löschen und als Ordner-ZIP herunterladen.
 
-Die App ist bewusst kein Cloud-Sync-Client. Sie ist ein privater Dateiserver im Stil von OneDrive – ohne Kontoanbieter, Datenbank oder Hintergrunddienste.
+Die App ist bewusst kein Cloud-Sync-Client. Sie ist ein privater Dateiserver – ohne Kontoanbieter, Datenbank oder Hintergrunddienste.
 
 ## Funktionen
 

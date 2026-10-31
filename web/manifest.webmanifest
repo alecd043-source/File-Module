@@ -1,6 +1,6 @@
 {
-  "name": "HeimDrive",
-  "short_name": "HeimDrive",
+  "name": "File Module",
+  "short_name": "File Module",
   "description": "Dateien im lokalen Netzwerk hochladen und herunterladen",
   "start_url": "/",
   "scope": "/",

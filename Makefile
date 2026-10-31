@@ -19,6 +19,7 @@ build-linux:
 	mkdir -p dist
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags "$(LDFLAGS)" -o dist/heimdrive-linux-amd64 .
 	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -trimpath -ldflags "$(LDFLAGS)" -o dist/heimdrive-linux-arm64 .
+	CGO_ENABLED=0 GOOS=linux GOARCH=386 GO386=softfloat go build -trimpath -ldflags "$(LDFLAGS)" -o dist/heimdrive-linux-386 .
 
 build-windows:
 	mkdir -p dist

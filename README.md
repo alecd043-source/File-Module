@@ -26,7 +26,12 @@ sudo sh scripts/install.sh dist/heimdrive-linux-amd64
 
 # arm64 (z. B. Raspberry Pi mit 64-Bit-System)
 sudo sh scripts/install.sh dist/heimdrive-linux-arm64
+
+# i386 (Debian 12 32-Bit, x86)
+sudo sh scripts/install.sh dist/heimdrive-linux-386
 ```
+
+Das i386-Binary wird mit `GO386=softfloat` gebaut und läuft dadurch auch auf älteren 32-Bit-CPUs ohne SSE2, etwa Athlon XP oder Pentium III.
 
 Das Installationsskript:
 
@@ -85,6 +90,7 @@ Ergebnis:
 ```text
 dist/heimdrive-linux-amd64
 dist/heimdrive-linux-arm64
+dist/heimdrive-linux-386
 ```
 
 Alternativ mit Make:

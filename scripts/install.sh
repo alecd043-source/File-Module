@@ -11,6 +11,7 @@ ARCH=$(uname -m)
 case "$ARCH" in
     x86_64|amd64) GOARCH=amd64 ;;
     aarch64|arm64) GOARCH=arm64 ;;
+    i386|i486|i586|i686) GOARCH=386 ;;
     *)
         echo "Nicht unterstützte Architektur: $ARCH" >&2
         exit 1

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="csrf-token" content="{{.CSRF}}">
+  <meta name="max-upload" content="{{.MaxUpload}}">
+  <title>{{.Name}}</title>
+  <link rel="stylesheet" href="/assets/app.css?v={{.Version}}">
+  <link rel="icon" href="/assets/icon.svg?v={{.Version}}" type="image/svg+xml">
+  <link rel="manifest" href="/assets/manifest.webmanifest?v={{.Version}}">
+  <script src="/assets/app.js?v={{.Version}}" defer></script>
+</head>
+<body>
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-drive" viewBox="0 0 24 24">
+      <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z"/>
+      <path d="M4 12h16M9 16h6"/>
+    </symbol>
+    <symbol id="icon-folder" viewBox="0 0 24 24">
+      <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H10l2 2h6.5A2.5 2.5 0 0 1 21 9.5v7a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9Z"/>
+    </symbol>
+    <symbol id="icon-file" viewBox="0 0 24 24">
+      <path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v5h5"/>
+    </symbol>
+    <symbol id="icon-image" viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4 17 5-5 4 4 3-3 4 4"/>
+    </symbol>
+    <symbol id="icon-video" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3V9Z"/>
+    </symbol>
+    <symbol id="icon-audio" viewBox="0 0 24 24">
+      <path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/>
+    </symbol>
+    <symbol id="icon-pdf" viewBox="0 0 24 24">
+      <path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v5h5M8.5 16.5v-4h1.6a1.2 1.2 0 1 1 0 2.4H8.5m4.5 1.6v-4h1.2a2 2 0 0 1 0 4H13Zm5 0v-4h2.5m-2.5 2h2"/>
+    </symbol>
+    <symbol id="icon-archive" viewBox="0 0 24 24">
+      <path d="M6 3h12v18H6V3Z"/><path d="M10 3v2h4V3m-4 4h4m-4 4h4m-4 4h4"/>
+    </symbol>
+    <symbol id="icon-upload" viewBox="0 0 24 24">
+      <path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M5 15v4h14v-4"/>
+    </symbol>
+    <symbol id="icon-folder-plus" viewBox="0 0 24 24">
+      <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H10l2 2h6.5A2.5 2.5 0 0 1 21 9.5v7a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9Z"/>
+      <path d="M12 10.5v5M9.5 13h5"/>
+    </symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24">
+      <path d="M10 4H5v16h5"/><path d="M15 8l4 4-4 4m4-4H9"/>
+    </symbol>
+    <symbol id="icon-more" viewBox="0 0 24 24">
+      <circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none"/>
+      <circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/>
+      <circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+      <path d="M12 4v12m0 0 5-5m-5 5-5-5"/><path d="M5 20h14"/>
+    </symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24">
+      <path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/>
+    </symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24">
+      <path d="M4 20h4L20 8l-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="m6 6 12 12M18 6 6 18"/>
+    </symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24">
+      <path d="m15 5-7 7 7 7"/>
+    </symbol>
+    <symbol id="icon-home" viewBox="0 0 24 24">
+      <path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/>
+    </symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24">
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/>
+    </symbol>
+    <symbol id="icon-open" viewBox="0 0 24 24">
+      <path d="M14 4h6v6m0-6-9 9"/><path d="M19 14v6H4V5h6"/>
+    </symbol>
+    <symbol id="icon-upload-cloud" viewBox="0 0 24 24">
+      <path d="M7 18a4 4 0 0 1-.4-8 6 6 0 0 1 11.6 1.6A3.5 3.5 0 0 1 17.5 18H7Z"/><path d="M12 17v-6m0 0-2.5 2.5M12 11l2.5 2.5"/>
+    </symbol>
+  </svg>
+
+  <header class="topbar">
+    <a class="brand" href="#/" aria-label="Zum Hauptordner">
+      <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#icon-drive"></use></svg></span>
+      <span class="brand-name">{{.Name}}</span>
+    </a>
+    <div class="top-actions">
+      <button class="btn primary" id="uploadButton" type="button">
+        <svg class="icon" aria-hidden="true"><use href="#icon-upload"></use></svg>
+        <span class="btn-label">Hochladen</span>
+      </button>
+      <button class="btn icon-only-mobile" id="newFolderButton" type="button" title="Neuer Ordner" aria-label="Neuer Ordner">
+        <svg class="icon" aria-hidden="true"><use href="#icon-folder-plus"></use></svg>
+        <span class="btn-label">Neuer Ordner</span>
+      </button>
+      <form class="logout-form" method="post" action="/logout">
+        <input type="hidden" name="_csrf" value="{{.CSRF}}">
+        <button class="icon-button" type="submit" title="Abmelden" aria-label="Abmelden">
+          <svg class="icon" aria-hidden="true"><use href="#icon-logout"></use></svg>
+        </button>
+      </form>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="pathbar">
+      <button class="icon-button back-button" id="backButton" type="button" title="Eine Ebene zurück" aria-label="Eine Ebene zurück" hidden>
+        <svg class="icon" aria-hidden="true"><use href="#icon-chevron-left"></use></svg>
+      </button>
+      <nav class="breadcrumbs" id="breadcrumbs" aria-label="Aktueller Ordner"></nav>
+    </div>
+
+    <section class="browser" aria-label="Dateien">
+      <div class="table-head" aria-hidden="true">
+        <span>Name</span>
+        <span>Größe</span>
+        <span>Geändert</span>
+        <span></span>
+      </div>
+      <div class="loading" id="loading" hidden>
+        <span class="spinner" aria-hidden="true"></span>
+        <span>Wird geladen …</span>
+      </div>
+      <ul class="file-list" id="fileList"></ul>
+      <div class="empty-state" id="emptyState" hidden>
+        <span class="empty-icon"><svg class="icon" aria-hidden="true"><use href="#icon-folder"></use></svg></span>
+        <h2>Dieser Ordner ist leer</h2>
+        <p>Lade eine Datei hoch oder erstelle einen neuen Ordner.</p>
+      </div>
+    </section>
+
+    <p class="page-note">
+      <svg class="icon" aria-hidden="true"><use href="#icon-drive"></use></svg>
+      <span>{{.Name}} · Version {{.Version}} · Nur in deinem lokalen Netzwerk erreichbar</span>
+    </p>
+  </main>
+
+  <input id="fileInput" type="file" multiple hidden>
+
+  <div class="drop-overlay" id="dropOverlay" hidden>
+    <div class="drop-card">
+      <svg class="icon" aria-hidden="true"><use href="#icon-upload-cloud"></use></svg>
+      <strong>Zum Hochladen loslassen</strong>
+      <span id="dropFolderName"></span>
+    </div>
+  </div>
+
+  <section class="transfer-panel" id="transferPanel" aria-live="polite" hidden>
+    <div class="transfer-head">
+      <div>
+        <strong id="transferTitle">Upload</strong>
+        <span id="transferSubtitle"></span>
+      </div>
+      <button class="icon-button" id="transferClose" type="button" aria-label="Upload-Fenster schließen" hidden>
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+    <progress id="transferProgress" max="1000" value="0">0 %</progress>
+    <div class="transfer-foot">
+      <span id="transferStatus">Wird vorbereitet …</span>
+      <button class="btn danger small" id="cancelUpload" type="button">Abbrechen</button>
+    </div>
+  </section>
+
+  <dialog class="dialog" id="actionDialog">
+    <div class="dialog-head">
+      <h2 id="actionTitle"></h2>
+      <button class="icon-button" type="button" data-close aria-label="Schließen">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+    <div class="action-list">
+      <button type="button" id="actionOpen">
+        <svg class="icon" aria-hidden="true"><use href="#icon-open"></use></svg><span>Öffnen</span>
+      </button>
+      <button type="button" id="actionPreview">
+        <svg class="icon" aria-hidden="true"><use href="#icon-eye"></use></svg><span>Vorschau</span>
+      </button>
+      <button type="button" id="actionDownload">
+        <svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg><span>Herunterladen</span>
+      </button>
+      <button type="button" id="actionRename">
+        <svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg><span>Umbenennen</span>
+      </button>
+      <button type="button" class="danger" id="actionDelete">
+        <svg class="icon" aria-hidden="true"><use href="#icon-trash"></use></svg><span>Löschen</span>
+      </button>
+    </div>
+  </dialog>
+
+  <dialog class="dialog" id="nameDialog">
+    <form id="nameForm" novalidate>
+      <div class="dialog-head">
+        <h2 id="nameTitle">Neuer Ordner</h2>
+        <button class="icon-button" type="button" data-close aria-label="Schließen">
+          <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+        </button>
+      </div>
+      <label class="field">
+        <span>Name</span>
+        <input id="nameInput" type="text" required maxlength="200" autocomplete="off" spellcheck="false">
+      </label>
+      <p class="form-error" id="nameError" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button class="btn" type="button" data-close>Abbrechen</button>
+        <button class="btn primary" id="nameSubmit" type="submit">Erstellen</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="deleteDialog">
+    <div class="dialog-head">
+      <h2>Endgültig löschen?</h2>
+      <button class="icon-button" type="button" data-close aria-label="Schließen">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+    <p class="dialog-text" id="deleteText"></p>
+    <p class="form-error" id="deleteError" role="alert" hidden></p>
+    <div class="dialog-actions">
+      <button class="btn" type="button" data-close>Abbrechen</button>
+      <button class="btn danger" id="deleteConfirm" type="button">Löschen</button>
+    </div>
+  </dialog>
+
+  <dialog class="dialog preview-dialog" id="previewDialog">
+    <div class="dialog-head">
+      <h2 id="previewTitle"></h2>
+      <button class="icon-button" type="button" data-close aria-label="Schließen">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+    <div class="preview-body" id="previewBody"></div>
+  </dialog>
+
+  <div class="toast-stack" id="toasts" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">Für diese App muss JavaScript aktiviert sein.</div>
+  </noscript>
+</body>
+</html>

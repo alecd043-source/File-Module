@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0f766e">
+  <title>Anmelden · {{.Name}}</title>
+  <link rel="stylesheet" href="/assets/app.css?v={{.Version}}">
+  <link rel="icon" href="/assets/icon.svg?v={{.Version}}" type="image/svg+xml">
+  <link rel="manifest" href="/assets/manifest.webmanifest?v={{.Version}}">
+</head>
+<body class="login-page">
+  <main class="login-wrap">
+    <section class="login-card" aria-labelledby="loginTitle">
+      <div class="login-mark">
+        <svg class="icon" aria-hidden="true">
+          <symbol id="icon-drive-login" viewBox="0 0 24 24">
+            <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z"/>
+            <path d="M4 12h16M9 16h6"/>
+          </symbol>
+          <use href="#icon-drive-login"></use>
+        </svg>
+      </div>
+      <h1 id="loginTitle">{{.Name}}</h1>
+      <p class="login-subtitle">Melde dich an, um auf deine Dateien zuzugreifen.</p>
+
+      {{if .Error}}
+      <div class="alert" role="alert">{{.Error}}</div>
+      {{end}}
+
+      <form class="login-form" method="post" action="/login">
+        <label class="field">
+          <span>Benutzername</span>
+          <input type="text" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required autofocus>
+        </label>
+        <label class="field">
+          <span>Passwort</span>
+          <input type="password" name="password" autocomplete="current-password" required>
+        </label>
+        <button class="btn primary login-button" type="submit">Anmelden</button>
+      </form>
+
+      <p class="login-hint">Diese App ist für dein lokales Netzwerk gedacht. Stelle sie nicht direkt ins Internet.</p>
+      <p class="login-version">{{.Name}} · Version {{.Version}}</p>
+    </section>
+  </main>
+</body>
+</html>
